@@ -92,24 +92,31 @@ const create = (data, callback) => {
   };
   
   export const allFunction = (data, callback) => {
-    console.log("Action given is", data.action);
-    if (data.action === "create") {
-      console.log("Create hit");
-      create(data, callback);
-    } else if (data.action === "read") {
-      console.log("Read hit");
-      getUsers(callback);
-    } else if (data.action === "readid") {
-      console.log("Readid hit");
-      getUsersById(data, callback);
-    } else if (data.action === "update") {
-      console.log("Update hit");
-      updateUser(data, callback);
-    } else if (data.action === "delete") {
-      console.log("Delete hit");
-      deleteUser(data, callback);
-    } else {
-      let results = "Provide valid action";
-      return callback(null, results);
+    console.log("Action given is", data);
+  
+    switch (data.action) {
+      case "create":
+        console.log("Create hit");
+        create(data, callback);
+        break;
+      case "read":
+        console.log("Read hit");
+        getUsers(callback);
+        break;
+      case "readid":
+        console.log("Readid hit");
+        getUsersById(data, callback);
+        break;
+      case "update":
+        console.log("Update hit");
+        updateUser(data, callback);
+        break;
+      case "delete":
+        console.log("Delete hit");
+        deleteUser(data, callback);
+        break;
+      default:
+        let results = "Provide valid action";
+        return callback(null, results);
     }
   };
